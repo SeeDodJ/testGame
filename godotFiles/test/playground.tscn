@@ -1,23 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxvybvnfo4v3a"]
+[gd_scene load_steps=6 format=3 uid="uid://bxvybvnfo4v3a"]
 
 [ext_resource type="Environment" uid="uid://epikmg2ri034" path="res://assets/enivronment/playground.tres" id="1_is3ju"]
 [ext_resource type="PackedScene" uid="uid://dcq0p2rt0ln5m" path="res://box.tscn" id="1_rupst"]
 [ext_resource type="PackedScene" uid="uid://bydgq1bvyaibu" path="res://player.tscn" id="2_wt17y"]
+[ext_resource type="MeshLibrary" uid="uid://bqesukpw4xaow" path="res://resources/worldBlocks.tres" id="5_4bqqs"]
 [ext_resource type="PackedScene" uid="uid://bb3h431oyfewr" path="res://coin.tscn" id="5_o00ia"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o00ia"]
-albedo_color = Color(0.12811498, 0.39, 0.081899986, 1)
-roughness = 0.76
-clearcoat_enabled = true
-clearcoat = 0.1
-clearcoat_roughness = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_edjgo"]
-material = SubResource("StandardMaterial3D_o00ia")
-size = Vector3(10, 0.5, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rupst"]
-size = Vector3(10, 0.49499512, 10)
 
 [node name="main" type="Node3D"]
 
@@ -33,15 +20,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5179385, 0)
 [node name="coin1" parent="." instance=ExtResource("5_o00ia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14973712, 0.5893728, -2.4280694)
 
-[node name="Floor" type="StaticBody3D" parent="."]
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_edjgo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_rupst")
-
 [node name="boxes" type="Node3D" parent="."]
 
 [node name="box" parent="boxes" instance=ExtResource("1_rupst")]
@@ -49,3 +27,10 @@ transform = Transform3D(0.9999973, 0.0014267308, -0.0018310675, -0.0023179932, 0
 
 [node name="box2" parent="boxes" instance=ExtResource("1_rupst")]
 transform = Transform3D(0.9999973, 0.0014267308, -0.0018310675, -0.0023179932, 0.6557543, -0.7549708, 0.00012359058, 0.75497293, 0.65575594, -0.47676325, 11.542403, -1.4768426)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("5_4bqqs")
+data = {
+"cells": PackedInt32Array(-65534, 65534, 1441792, -65534, 65535, 1441792, -65535, 65535, 1441792, -65535, 0, 1441792, -65536, 0, 1441792, -65536, 1, 1441792, -1, 1, 1441792, -2, 1, 1441792, -3, 65535, 1441792, -2, 65535, 1441792, -1, 65535, 1441792, -65536, 65535, 1441792, -65535, 65534, 1441792, -4, 65535, 1441792, -3, 65534, 1441792, -2, 65534, 1441792, -1, 65534, 1441792, -65536, 65534, 1441792, -65534, 0, 1441792, -65534, 1, 1441792, -65535, 1, 1441792, -65535, 2, 1441792, -65536, 3, 1441792, -1, 3, 1441792, -2, 3, 1441792, -2, 2, 1441792, -1, 2, 1441792, -65536, 2, 1441792, -3, 1, 1441792, -3, 0, 1441792, -2, 0, 1441792, -1, 0, 1441792, -3, 2, 1441792, -3, 3, 1441792, -4, 3, 1441792, -4, 2, 1441792, -4, 1, 1441792, -4, 0, 1441792, -65534, 2, 1441792, -4, 65534, 1048576, -5, 3, 655365, -5, 2, 655365, -5, 1, 655365, -5, 0, 655365, -5, 65535, 655365, -5, 65534, 655365, -4, 65533, 1048581, -3, 65533, 1048581, -2, 65533, 1048581, -1, 65533, 1048581, -65536, 65533, 1048581, -65535, 65533, 1048581, -65534, 65533, 1048581, -65533, 65534, 5, -65533, 65535, 5, -65533, 1, 5, -65533, 0, 5, -65533, 2, 5, -65533, 3, 5, -65534, 4, 1441797, -65535, 4, 1441797, -65536, 4, 1441797, -1, 4, 1441797, -2, 4, 1441797, -3, 4, 1441797, -4, 4, 1441797, -65534, 3, 655360, -65535, 3, 655360, -65533, 4, 6, -65533, 65533, 1048582, -5, 65533, 655366, -5, 4, 1441798)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
