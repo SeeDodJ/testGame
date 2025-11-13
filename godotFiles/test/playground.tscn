@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxvybvnfo4v3a"]
+
+[ext_resource type="Environment" uid="uid://epikmg2ri034" path="res://assets/enivronment/playground.tres" id="1_is3ju"]
+[ext_resource type="PackedScene" uid="uid://dcq0p2rt0ln5m" path="res://box.tscn" id="1_rupst"]
+[ext_resource type="PackedScene" uid="uid://bydgq1bvyaibu" path="res://player.tscn" id="2_wt17y"]
+[ext_resource type="PackedScene" uid="uid://bb3h431oyfewr" path="res://coin.tscn" id="5_o00ia"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o00ia"]
+albedo_color = Color(0.12811498, 0.39, 0.081899986, 1)
+roughness = 0.76
+clearcoat_enabled = true
+clearcoat = 0.1
+clearcoat_roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_edjgo"]
+material = SubResource("StandardMaterial3D_o00ia")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rupst"]
+size = Vector3(10, 0.49499512, 10)
+
+[node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_is3ju")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.5942413, 0.41716927, -0.6876389, -0.03751633, 0.8396595, 0.5418162, 0.8034114, 0.3477672, -0.4833097, -9.563629, 6.4473696, -6.4264784)
+
+[node name="player" parent="." instance=ExtResource("2_wt17y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5179385, 0)
+
+[node name="coin1" parent="." instance=ExtResource("5_o00ia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14973712, 0.5893728, -2.4280694)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_edjgo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_rupst")
+
+[node name="boxes" type="Node3D" parent="."]
+
+[node name="box" parent="boxes" instance=ExtResource("1_rupst")]
+transform = Transform3D(0.9999973, 0.0014267308, -0.0018310675, -0.0023179932, 0.6557543, -0.7549708, 0.00012359058, 0.75497293, 0.65575594, -0.10864401, 9.2596035, -1.5513544)
+
+[node name="box2" parent="boxes" instance=ExtResource("1_rupst")]
+transform = Transform3D(0.9999973, 0.0014267308, -0.0018310675, -0.0023179932, 0.6557543, -0.7549708, 0.00012359058, 0.75497293, 0.65575594, -0.47676325, 11.542403, -1.4768426)
