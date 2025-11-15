@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bydgq1bvyaibu"]
+[gd_scene load_steps=8 format=3 uid="uid://bydgq1bvyaibu"]
 
 [ext_resource type="Script" uid="uid://c3ol68ukg3isi" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://db1bl58kyyki5" path="res://spring_arm_camera.gd" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://bmbf4x2spvbt0" path="res://cameraFollow.gd" id="3_i3pqv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
 albedo_color = Color(0.19139999, 0.23026003, 0.58, 1)
@@ -9,6 +11,9 @@ albedo_color = Color(0.19139999, 0.23026003, 0.58, 1)
 material = SubResource("StandardMaterial3D_4flbx")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
+radius = 0.3
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -21,11 +26,19 @@ mesh = SubResource("CapsuleMesh_sh265")
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_4flbx")
 
-[node name="cameraController" type="Node3D" parent="."]
-top_level = true
+[node name="springArmSmooth" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14452508, 0)
+script = ExtResource("2_onrkg")
 
-[node name="cameraFollow" type="Node3D" parent="cameraController"]
-transform = Transform3D(1, 0, 0, 0, 0.9997288, 0.02328058, 0, -0.02328058, 0.9997288, 0, 0.7138149, 1.4760737)
+[node name="SpringArm3D" type="SpringArm3D" parent="springArmSmooth"]
+shape = SubResource("SphereShape3D_i3pqv")
+spring_length = 3.0
 
-[node name="Camera3D" type="Camera3D" parent="cameraController/cameraFollow"]
+[node name="springPosition" type="Node3D" parent="springArmSmooth/SpringArm3D"]
+
+[node name="Camera3D" type="Camera3D" parent="springArmSmooth" node_paths=PackedStringArray("spring_arm")]
+transform = Transform3D(1, 0, 0, 0, 0.96344364, -0.26791105, 0, 0.26791105, 0.96344364, 0, 0.58207893, -1.5622177)
 fov = 85.0
+script = ExtResource("3_i3pqv")
+spring_arm = NodePath("../SpringArm3D/springPosition")
+lerp_power = 6.0
