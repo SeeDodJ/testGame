@@ -13,7 +13,6 @@ material = SubResource("StandardMaterial3D_4flbx")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
-margin = 0.1
 radius = 0.3
 
 [node name="player" type="CharacterBody3D"]
@@ -23,6 +22,10 @@ script = ExtResource("1_4flbx")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_sh265")
+
+[node name="RayCast3D" type="RayCast3D" parent="MeshInstance3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.31624675, 0)
+target_position = Vector3(0, -0.4, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -44,7 +47,3 @@ fov = 85.0
 script = ExtResource("3_i3pqv")
 spring_arm = NodePath("../SpringArm3D/springPosition")
 lerp_power = 6.0
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06324935, 0)
-target_position = Vector3(0, -0.4, 0)

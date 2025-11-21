@@ -5,8 +5,8 @@ extends CharacterBody3D
 const SPEED = 3.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.5
-
 var xform : Transform3D
+
 
 # processes things only once when entering the scene
 func _ready():
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -39,13 +39,15 @@ func _physics_process(delta: float) -> void:
 	# makes you go where you look basically
 	direction = direction.rotated(Vector3.UP, $springArmSmooth.global_rotation.y)
 	
-# align the character to the floor
-	if is_on_floor():
+ #align the character to the floor
+	if is_on_floor() and input_dir != Vector2(0, 0):
 		align_with_floor($RayCast3D.get_collision_normal())
-		global_transform = global_transform.interpolate_with(xform, 0.3)
+		global_transform = global_transform.interpolate_with(xform, 0.1)
 	elif not is_on_floor():
 		align_with_floor(Vector3.UP)
-		global_transform = global_transform.interpolate_with(xform, 0.3)
+		global_transform = global_transform.interpolate_with(xform, 0.1)
+		
+	
 	
 	#makes your character move with certain speed
 	if direction:
@@ -62,3 +64,7 @@ func align_with_floor(floor_normal):
 	xform.basis.y = floor_normal
 	xform.basis.x = -xform.basis.z.cross(floor_normal)
 	xform.basis = xform.basis.orthonormalized()
+
+
+func _on_fall_zone_body_entered(body: Node3D) -> void:
+	get_tree().change_scene_to_file("res://playground.tscn")
