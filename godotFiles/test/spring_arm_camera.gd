@@ -8,7 +8,6 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	spring_arm.margin = 0.01
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -21,6 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.spring_length += 1
 	if spring_arm.spring_length >= 4:
 		spring_arm.spring_length -= 1
+		#spring_arm.spring_length = clamp(spring_arm.spring_length, -1, 4)
 	if event.is_action_pressed("wheel_up"):
 		spring_arm.spring_length -= 1
 	if event.is_action_pressed("wheel_down"):

@@ -919,7 +919,7 @@ spring_length = 3.0
 [node name="springPosition" type="Node3D" parent="springArmSmooth/SpringArm3D"]
 
 [node name="Camera3D" type="Camera3D" parent="springArmSmooth" node_paths=PackedStringArray("spring_arm")]
-transform = Transform3D(1, 0, 0, 0, 0.96344364, -0.26791105, 0, 0.26791105, 0.96344364, 0, 0.58207893, -1.5622178)
+transform = Transform3D(1, 0, 0, 0, 0.96344364, -0.26791105, 0, 0.26791105, 0.96344364, 0, 0.58207893, -1.5622177)
 fov = 85.0
 script = ExtResource("3_i3pqv")
 spring_arm = NodePath("../SpringArm3D/springPosition")

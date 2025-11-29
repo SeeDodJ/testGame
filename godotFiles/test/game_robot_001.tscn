@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://blwf4pp3u10o0"]
+
+[ext_resource type="PackedScene" uid="uid://dfpw0d7upoe3f" path="res://assets/Models/game-robot-001.glb" id="1_dycnj"]
+
+[node name="game-robot-001" instance=ExtResource("1_dycnj")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(-0.0012174188, 0.06974588, 0.017409902, 0.9974122)
+bones/2/rotation = Quaternion(-0.39759684, -0.63449746, 0.47977376, -0.4573258)
+bones/3/position = Vector3(0.28026932, 0.014400483, 0.0076500857)
+bones/3/rotation = Quaternion(-0.062701754, -0.27879176, 0.9582876, -0.005352389)
+bones/4/rotation = Quaternion(-0.29206008, -0.010795597, -0.0004843779, 0.956339)
+bones/6/rotation = Quaternion(-0.15303437, -0.8358706, 0.46962312, -0.23948932)
+bones/7/position = Vector3(-0.28026927, 0.014400483, 0.0076500783)
+bones/7/rotation = Quaternion(-0.06798831, 0.35175622, 0.9328626, 0.037584715)
+bones/8/rotation = Quaternion(-0.10582433, 0.009454522, 0.0059704944, 0.99432194)
